@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <script>
+      //service worker supported by browser
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js");
+      }
+    </script>
+
+    <style>
+
+      @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap');
+
+      body {
+        background-color: black;
+        color: whitesmoke;
+        font-family: 'Teko', 'Courier New', Courier, monospace;
+      }
+
+      h1 {
+        font-family: 'Teko', 'Courier New', Courier, monospace;
+        font-size: 50px;
+      }
+
+      h2 {
+        font-size: 35px;
+      }
+
+      figcaption {
+        font-size: 40px;
+        text-align: center;
+      }
+
+      li {
+        margin-bottom: 10px;
+        border-bottom: #8e8c8c solid 1px;
+        height: 30px;
+        font-size: larger;
+        list-style-type: none;
+      }
+
+      li button {
+        position: relative;
+        float: right;
+        margin-left: 20px;
+        font-size:smaller;
+      }
+
+      #legendPic {
+        max-width: 100%;
+        height: auto"
+      }
+
+      #rollBtn {
+        height: 200px;
+        width: 200px;
+        margin-top: 100px;
+        border: lightgrey outset 8px;
+        background-color: red;
+        color: white;
+      }
+
+      #rollBtn:active, #reloadBtn:active {
+        border: lightgrey inset 8px ;
+        background-color: rgb(232, 0, 0);
+        color: rgb(222, 222, 222);
+      }
+
+      #reloadBtn {
+        display: none;
+        box-shadow: 1px 1px 10px black;
+        position:absolute;
+        top: 300px;
+        width: 180px;
+        height: 80px;
+        margin-top: 120px;
+        border: lightgrey outset 8px;
+        background-color: red;
+        color: white;
+      }
+
+      #rollBtn h2, #reloadBtn h2 {
+        font: bold 25px arial, sans-serif;
+        background-color: #565656;
+        color: transparent;
+        text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+      }
+
+      .lds-hourglass {
+        display: none;
+        position: relative;
+        margin: auto;
+        margin-top: 100px;
+      }
+      .lds-hourglass:after {
+        content: " ";
+        display: block;
+        border-radius: 50%;
+        width: 0;
+        height: 0;
+        margin: 8px;
+        box-sizing: border-box;
+        border: 100px solid rgb(250, 0, 0);
+        border-color: rgb(255, 0, 0) transparent rgb(255, 0, 0) transparent;
+        animation: lds-hourglass 1.2s infinite;
+      }
+      @keyframes lds-hourglass {
+        0% {
+          transform: rotate(0);
+          animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }
+        50% {
+          transform: rotate(900deg);
+          animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        100% {
+          transform: rotate(1800deg);
+        }
+      }
+
+      @media only screen and (min-width: 600px) {
+        h1 {
+          font-size: 100px;
+        }
+
+        h2 {
+        font-size: 50px;
+        }
+
+        #reloadBtn {
+          display: none;
+          box-shadow: 1px 1px 10px black;
+          position:absolute;
+          top: 550px;
+          width: 220px;
+          height: 100px;
+          margin-top: 120px;
+          border: lightgrey outset 10px;
+          background-color: red;
+          color: white;
+        }
+
+
+      }
+    </style>
+    <script src="legendPicker.js"></script>
+  </head>
+
+  <!-- CONTENT ------------------------------------------------------>
+
+  <body onload="legendList()">
+    <div
+      style="
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <button id="reloadBtn" onmouseup="pickRandomLegend()">
+        <h2>Roll again</h2>
+      </button>
+
+      <h1>Apex Legends</h1>
+      <h2>Random legend picker</h2>
+      <button id="rollBtn" onmouseup="pickRandomLegend()">
+        <h2>Press button</h2>
+      </button>
+      <div id="hourGlass" class="lds-hourglass"></div>
+
+      <figure>
+        <img id="legendPic" />
+        <figcaption id="legendName"></figcaption>
+      </figure>
+      <ul id="legendsUl"></ul>
+    </div>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+
+    <script src="" async defer></script>
+  </body>
+</html>
